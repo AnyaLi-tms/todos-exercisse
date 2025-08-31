@@ -10,7 +10,7 @@ public interface TodoRepository {
 
     void delete(Integer id);
 
-    Todo update(Integer id, Todo todo);
+    void update(Integer id, Todo todo);
 
     Todo get(Integer id);
 

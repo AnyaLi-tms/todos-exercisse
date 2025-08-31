@@ -1,5 +1,8 @@
 package com.oocl.todos.controller;
 
+import com.oocl.todos.controller.dto.TodoRequest;
+import com.oocl.todos.controller.dto.TodoResponse;
+import com.oocl.todos.controller.mapper.TodoMapper;
 import com.oocl.todos.model.Status;
 import com.oocl.todos.model.Todo;
 import com.oocl.todos.service.TodoService;
@@ -12,15 +15,18 @@ import java.util.List;
 @RequestMapping("/todos")
 public class TodoController {
     private final TodoService todoService;
+    private final TodoMapper todoMapper;
 
-    public TodoController(TodoService todoService) {
+    public TodoController(TodoService todoService, TodoMapper todoMapper) {
         this.todoService = todoService;
+        this.todoMapper = todoMapper;
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Todo createTodo(@RequestBody Todo todo) {
-        return todoService.createTodo(todo);
+    public TodoResponse createTodo(@RequestBody TodoRequest todoRequest) {
+        Todo todo = todoMapper.toEntity(todoRequest);
+        return todoMapper.toResponse(todoService.createTodo(todo));
     }
 
     @DeleteMapping("/{id}")
@@ -35,16 +41,16 @@ public class TodoController {
     }
 
     @GetMapping("/{id}")
-    public Todo getTodo(@PathVariable Integer id) {
-        return todoService.getTodo(id);
+    public TodoResponse getTodo(@PathVariable Integer id) {
+        return todoMapper.toResponse(todoService.getTodo(id));
     }
 
     @GetMapping()
-    public List<Todo> getTodos(
+    public List<TodoResponse> getTodos(
             @RequestParam(required = false) Integer page,
             @RequestParam(required = false) Integer pageSize,
             @RequestParam(required = false) Status status
     ) {
-        return todoService.getTodos(page, pageSize, status);
+        return todoMapper.toResponse(todoService.getTodos(page, pageSize, status));
     }
 }

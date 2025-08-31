@@ -7,7 +7,8 @@ public class TodoResponse {
     private String title;
     private Status status;
 
-    public TodoResponse() {}
+    public TodoResponse() {
+    }
 
     public Integer getId() {
         return id;

@@ -19,7 +19,7 @@ public class TodoMapper {
 
     public TodoResponse toResponse(Todo todo) {
         TodoResponse todoResponse = new TodoResponse();
-        BeanUtils.copyProperties(todoResponse, todo);
+        BeanUtils.copyProperties(todo, todoResponse);
         return todoResponse;
     }
 

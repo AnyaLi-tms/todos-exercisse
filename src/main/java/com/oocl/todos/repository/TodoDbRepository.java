@@ -28,12 +28,11 @@ public class TodoDbRepository implements TodoRepository {
     }
 
     @Override
-    public Todo update(Integer id, Todo todo) {
+    public void update(Integer id, Todo todo) {
         if (repository.existsById(id)) {
             todo.setId(id);
             repository.save(todo);
         }
-        return todo;
     }
 
     @Override
