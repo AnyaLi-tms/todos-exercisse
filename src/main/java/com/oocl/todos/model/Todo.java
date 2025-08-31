@@ -9,11 +9,11 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private String status; // todo, doing, done
+    private Status status; // TODO, DOING, DONE
 
     public Todo() {}
 
-    public Todo(String title, String status) {
+    public Todo(String title, Status status) {
         this.title = title;
         this.status = status;
     }
@@ -29,10 +29,10 @@ public class Todo {
     public void setTitle(String title) {
         this.title = title;
     }
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 }
