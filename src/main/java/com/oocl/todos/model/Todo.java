@@ -10,9 +10,13 @@ public class Todo {
     private Integer id;
     private String title;
     @Enumerated(EnumType.STRING)
-    private Status status; // TODO, DOING, DONE
+    private Status status = Status.TODO; // TODO, DOING, DONE
 
     public Todo() {}
+
+    public Todo(String title) {
+        this.title = title;
+    }
 
     public Todo(String title, Status status) {
         this.title = title;
