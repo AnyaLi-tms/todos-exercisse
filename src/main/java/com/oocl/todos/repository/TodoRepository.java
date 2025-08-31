@@ -8,11 +8,11 @@ import java.util.List;
 public interface TodoRepository {
     Todo create(Todo todo);
 
-    void delete(Long id);
+    void delete(Integer id);
 
-    Todo update(Long id, Todo todo);
+    Todo update(Integer id, Todo todo);
 
-    Todo get(Long id);
+    Todo get(Integer id);
 
     List<Todo> getAll(Integer page, Integer pageSize, Status status);
 }
