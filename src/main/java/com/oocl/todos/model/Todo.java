@@ -12,6 +12,13 @@ public class Todo {
     @Enumerated(EnumType.STRING)
     private Status status = Status.TODO; // TODO, DOING, DONE
 
+    @PrePersist
+    public void prePersist() {
+        if (status == null) {
+            status = Status.TODO;
+        }
+    }
+
     public Todo() {}
 
     public Todo(String title) {
